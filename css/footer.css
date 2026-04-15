@@ -95,6 +95,12 @@
     gap: 0.85rem;
 }
 
+.contact-cta-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
 .follow-link {
     display: inline-block;
     text-decoration: none;
@@ -130,7 +136,15 @@
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
-    padding-top: 0.5rem;
+    padding-top: 0.2rem;
+}
+
+.contact-call-btn {
+    animation: pulse 2s infinite;
+}
+
+.contact-call-btn:hover {
+    animation: none;
 }
 
 /* Media Queries */
@@ -157,6 +171,11 @@
 @media (max-width: 500px) {
     .contact-section {
         padding: 2rem 1rem;
+    }
+
+    .contact-cta-text {
+        text-align: center;
+        font-size: 1.2rem;
     }
 
     .contact-map iframe {

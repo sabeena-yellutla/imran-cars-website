@@ -172,6 +172,21 @@ body {
     }
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+  }
+}
+
 /* ============= Scroll Reveal ============ */
 
 .reveal {

@@ -16,6 +16,12 @@
     gap: 1.5rem;
 }
 
+/* Active class for filter buttons */
+.btn-active {
+    background-color: var(--gold);
+    color: #000000;
+}
+
 .no-results {
     display: none;
     flex-direction: column;
@@ -38,10 +44,37 @@
     font-weight: 600;
 }
 
-.btn-active {
-    background-color: var(--gold);
-    color: #000000;
+.btn-clear-hint {
+    margin-top: 8px;
+    padding: 12px 28px;
+    background: var(--gold);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.btn-clear-hint:hover {
+    background: var(--gold-hover);
+}
+
+.view-available-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.view-available-btn i {
+    color: var(--gold);
+}
+
+.view-available-btn:hover i {
+    color: #000;
+}
+
 
 /* ========== CAR CARD ========== */
 .car-card {
@@ -50,10 +83,11 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--card-shadow);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .car-card:hover {
+    transform: translateY(-4px);
     box-shadow: var(--card-shadow-hover);
 }
 
@@ -75,7 +109,52 @@
 }
 
 .car-card:hover .card-image img {
-    transform: scale(1.05);
+    transform: scale(1.08);
+}
+
+.car-card.sold-card {
+    opacity: 0.7;
+}
+
+.car-card.car-card.sold-card .card-image img {
+    filter: grayscale(100%);
+}
+
+.car-card.sold-card:hover .card-image img {
+    filter: grayscale(100%);
+    transform: none;
+}
+
+.card-share-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+    backdrop-filter: blur(4px);
+}
+
+.card-share-btn:hover {
+    color: rgb(255, 255, 255);
+    transform: scale(1.1);
+}
+
+.card-share-btn:active {
+    transform: scale(0.95);
+}
+.car-card:hover .card-share-btn {
+    display: flex;
 }
 
 .card-badge {
@@ -141,7 +220,7 @@
 }
 
 .card-price strong {
-    /* highligth class is added to price, so color is not given */
+    /* highlight class is added to price, so color is not given */
     font-family: 'Montserrat', sans-serif;
     font-size: 1.4rem;
     font-weight: 800;
@@ -160,7 +239,7 @@
     gap: 0.75rem;
 }
 
-.btn-instagram {
+.btn-whatsapp-card {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -174,22 +253,22 @@
     flex-shrink: 0;
 }
 
-.btn-instagram i {
+.btn-whatsapp-card i {
     font-size: 1.2rem;
-    color: #e1306c;
+    color: #25d366;
 }
 
-.btn-instagram:hover {
-    background-color: #e1306c;
-    border-color: #e1306c;
+.btn-whatsapp-card:hover {
+    background-color: #25d366;
+    border-color: #25d366;
     transform: translateY(-2px);
 }
 
-.btn-instagram:hover i {
+.btn-whatsapp-card:hover i {
     color: #ffffff;
 }
 
-.btn-instagram:active {
+.btn-whatsapp-card:active {
     transform: scale(0.95);
 }
 
@@ -249,6 +328,9 @@
     .section-description {
         font-size: 0.9rem;
     }
+    .card-share-btn {
+        display: flex;
+    }
 }
 
 @media (max-width: 550px) {
@@ -269,6 +351,19 @@
     .card-image {
         width: 100%;
         aspect-ratio: 4/3;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .no-results i,
+    .no-results p {
+        font-size: 0.8rem;
+    }
+
+    .btn-clear-hint {
+        padding: 10px 22px;
+        font-size: 12px;
     }
 }
 
@@ -348,7 +443,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    pointer-events: none;
+    cursor: zoom-in;
 }
 
 /* ARROWS */
@@ -379,7 +474,7 @@
 /* DOTS */
 .modal-swiper .swiper-pagination {
     position: absolute;
-    /* bottom: 10px; */
+    bottom: 10px;
 }
 
 .modal-swiper .swiper-pagination-bullet {
@@ -468,7 +563,7 @@
     color: var(--text-secondary);
     background-color: var(--secondary-bg);
 }
- 
+
 .spec-label i {
     color: var(--gold);
     width: 16px;
@@ -624,4 +719,53 @@
     .spec-label i {
         width: 15px;
     }
+}
+
+/* ========== LIGHTBOX ========== */
+
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+}
+
+.lightbox-img {
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+    border-radius: 4px;
+    user-select: none;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    z-index: 3001;
+}
+
+.lightbox-close:hover {
+    background-color: var(--gold);
+    color: #000000;
 }

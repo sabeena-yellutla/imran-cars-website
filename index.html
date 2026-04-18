@@ -5,22 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Analytics -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHW428KF2Y"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-NHW428KF2Y');
-    </script>
-
-    <!-- Google Search Console -->
-    <meta name="google-site-verification" content="u67ygwVqc-yNmkLFhZv18DRr2zlEkNTeq2BnYvOg2k0" />
-
     <!-- SEO meta tags -->
-    <meta name="title" content="Imran Cars Tadipatri | Used Cars in Tadipatri | Best Second Hand Cars in Tadipatri, AP">
+    <meta name="title" content="Imran Cars Tadipatri | Best Second Hand Cars in Tadipatri, AP">
     <meta name="description" content="Buy fully inspected second-hand cars in Tadipatri, Anantapur, Andhra Pradesh. Trusted dealer with 14+ years experience. Honda, Maruti, Hyundai, Toyota, Mahindra and more.
         Visit today.">
     <meta name="keywords"
@@ -36,6 +22,18 @@
 
     <!-- Title of Webpage -->
     <title>Imran Cars Tadipatri | Best Second Hand Cars in Tadipatri, Anantapur, AP</title>
+
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="u67ygwVqc-yNmkLFhZv18DRr2zlEkNTeq2BnYvOg2k0" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHW428KF2Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NHW428KF2Y');
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/assets/logo.png">
@@ -72,7 +70,7 @@
 
                 <div class="nav-links">
                     <ul class="list">
-                        <li><a href="#home">Home</a></li>
+                        <li><a href="#home" class="active">Home</a></li>
                         <li><a href="#cars">Cars</a></li>
                         <li><a href="#reviews">Reviews</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -273,6 +271,41 @@
             </div>
         </section>
 
+        <!-- Marquee / Infinite Scroll Logos -->
+        <section class="marquee-section reveal">
+            <div class="marquee-wrapper">
+
+                <div class="marquee-track">
+                    <div class="marquee-content">
+                        <img src="images/brands/honda.svg" alt="Honda" loading="lazy">
+                        <img src="images/brands/toyota.svg" alt="Toyota" loading="lazy">
+                        <img src="images/brands/mahindra.svg" alt="Mahindra" loading="lazy">
+                        <img src="images/brands/mercedes.svg" alt="Mercedes Benz" loading="lazy">
+                        <img src="images/brands/hyundai.svg" alt="Hyundai" loading="lazy">
+                        <img src="images/brands/maruti.svg" alt="Maruti" loading="lazy">
+                        <img src="images/brands/mazda.svg" alt="Mazda" loading="lazy">
+                        <img src="images/brands/citroen.svg" alt="Citroen" loading="lazy">
+                        <img src="images/brands/renault.svg" alt="Renault" loading="lazy">
+                        <img src="images/brands/mahindra1.svg" alt="Mahindra" loading="lazy">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="marquee-content" aria-hidden="true">
+                        <img src="images/brands/honda.svg" alt="" loading="lazy">
+                        <img src="images/brands/toyota.svg" alt="" loading="lazy">
+                        <img src="images/brands/mahindra.svg" alt="" loading="lazy">
+                        <img src="images/brands/mercedes.svg" alt="" loading="lazy">
+                        <img src="images/brands/hyundai.svg" alt="" loading="lazy">
+                        <img src="images/brands/maruti.svg" alt="" loading="lazy">
+                        <img src="images/brands/mazda.svg" alt="" loading="lazy">
+                        <img src="images/brands/citroen.svg" alt="" loading="lazy">
+                        <img src="images/brands/renault.svg" alt="" loading="lazy">
+                        <img src="images/brands/mahindra1.svg" alt="" loading="lazy">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <!-- ========== LISTINGS SECTION ========== -->
         <section id="cars" class="listing-section">
             <div class="listing-container">
@@ -288,7 +321,7 @@
                     <p class="section-description">Every car is thoroughly inspected and comes with clear documentation.
                         Find your perfect match below.</p>
                 </div>
-                <!-- Cards will be injected here by JavaScript -->
+                <!-- Cards will be injected here by JavaScript (filter.js) -->
 
                 <!-- Cards Grid -->
                 <div class="cars-grid" id="carsGrid"></div>
@@ -297,6 +330,16 @@
                 <div class="no-results" id="noResults">
                     <i class="fa-solid fa-car"></i>
                     <p>No cars found matching your filters.</p>
+                    <button class="btn-clear-hint" onclick="clearFilters()">
+                        Clear Filters & Browse All Cars
+                    </button>
+                </div>
+
+                <!-- View Available Cars button after sold cars for better UX  -->
+                <div class="view-available-btn-wrapper" id="viewAvailableWrapper" style="display:none;">
+                    <button class="view-available-btn available-btn" id="viewAvailableBtn">
+                        <i class="fa-solid fa-car"></i> View Available Cars
+                    </button>
                 </div>
             </div>
         </section>
@@ -852,7 +895,7 @@
 
     </main>
 
-    <!-- for SEO ranking -->
+    <!-- for SEO ranking only not display on webpage -->
     <p style="display:none;">
         Best used cars in Tadipatri, pre-owned cars in Anantapur, second hand cars near Tadipatri.
     </p>
@@ -901,6 +944,7 @@
                         <li>Mahindra</li>
                         <li>Datsun</li>
                         <li>Mercedes Benz</li>
+                        <li class="and-more">& more...</li>
                     </ul>
                 </div>
 
@@ -980,6 +1024,14 @@
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
+
+    <!-- Image Lightbox modal for fullscreen image expand in car modal -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    </div>
 
     <!-- Swiper JS Link -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

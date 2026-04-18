@@ -29,11 +29,13 @@ Car data is managed using a JSON file and dynamically rendered on the website us
 * 🪟 Interactive car detail modal with image carousel
 * 🎞 Swiper.js integration for reviews and modal slider
 * ✨ Scroll reveal animations using Intersection Observer
+* 📨 Web Share API — share any car listing directly to WhatsApp or any app
 * 🌗 Dark/Light theme toggle
 * 📱 Fully responsive (mobile-first design)
 * ⭐ Customer reviews section
 * ❓ FAQ section
 * 📞 Contact & location section with Google Maps
+*  👀 SEO optimised + Google Search Console + Google Analytics
 
 ---
 
@@ -48,15 +50,26 @@ Car data is managed using a JSON file and dynamically rendered on the website us
 
 ## 📂 Project Structure
 
-```bash
+```
 index.html
 css/
+  style.css
+  navbar.css
+  hero.css
+  cars.css
+  modal.css
+  sections.css
+  footer.css
 js/
-data/cars.json
+  main.js
+  filter.js
+  modal.js
+data/
+  cars.json
 images/
-car-website-preview.jpg
+  assets/
+  cars/
 ```
-
 ---
 
 ## 🧠 Key Concepts Used
@@ -83,6 +96,13 @@ The goal of this project is to:
 * Improve frontend development skills
 * Focus on UI/UX and responsiveness
 * Practice working with dynamic data
+
+---
+
+## 👨‍💻 Developer
+
+**Yellutla Sabeena** — Frontend Developer  
+Built with zero templates, zero Bootstrap, zero shortcuts.
 
 ---
 

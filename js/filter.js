@@ -38,6 +38,10 @@ const yearFilter = document.getElementById("yearFilter");
 const seatingFilter = document.getElementById("seatingFilter");
 const resultMsg = document.getElementById("noResults");
 
+const viewAvailableWrapper = document.getElementById("viewAvailableWrapper");
+const viewAvailableBtn = document.getElementById("viewAvailableBtn");
+
+
 let allCars = [];
 let currentStatus = "available";
 
@@ -54,6 +58,13 @@ soldBtn.addEventListener("click", () => {
     update();
     setActiveButton(soldBtn);
     document.getElementById("cars").scrollIntoView({ behavior: "smooth" });
+});
+
+viewAvailableBtn.addEventListener("click", () => {
+    currentStatus = "available";
+    update();
+    setActiveButton(availableBtn);
+    document.getElementById("cars").scrollIntoView({ behavior: "smooth" });
 })
 
 searchInput.addEventListener("input", update);
@@ -67,14 +78,17 @@ transmissionFilter.addEventListener("change", update);
 yearFilter.addEventListener("change", update);
 seatingFilter.addEventListener("change", update);
 
-// Active button for Filters
+// Clear Filters
+clearBtn.addEventListener("click", clearFilters);
+
+//  Active button for Filter buttons
 function setActiveButton(activeBtn) {
     availableBtn.classList.remove("btn-active");
     soldBtn.classList.remove("btn-active");
     activeBtn.classList.add("btn-active");
 }
 
-// Add 'active-filter' class when a filter is selected to show active (gold) state
+// Add 'active-filter' class when a filter dropdown is selected to show active (gold) state
 allDropdowns.forEach(select => {
     select.addEventListener("change", () => {
         if (select.value !== "") {
@@ -84,9 +98,6 @@ allDropdowns.forEach(select => {
         }
     });
 });
-
-// Clear Filters
-clearBtn.addEventListener("click", clearFilters);
 
 // ========== LOAD CAR DATA FROM JSON FILE ==========
 
@@ -102,6 +113,10 @@ function renderCars(filteredCars) {
     const carsGrid = document.getElementById("carsGrid");
     carsGrid.innerHTML = "";
 
+    // show view available button only on sold view
+    viewAvailableWrapper.style.display = currentStatus === "sold" ? "flex" : "none";
+
+    // show no results msg when no filters match
     if (filteredCars.length === 0) {
         resultMsg.style.display = "flex";
     }
@@ -111,7 +126,7 @@ function renderCars(filteredCars) {
         filteredCars.forEach(car => {
             // Creating Car Cards dynamically by JS using json file data
             const card = document.createElement("div");
-            card.className = "car-card";
+            card.className = `car-card ${car.status === "sold" ? "sold-card" : ""}`;
             card.innerHTML = `
         <div class="card-image">
         <img src="${car.images[0]}" alt="${car.name}" loading="lazy">
@@ -122,7 +137,11 @@ function renderCars(filteredCars) {
                         ? `<span class='card-badge badge-${car.badge === 'Hot Deal' ? 'hot' : 'new'}'>${car.badge}</span>`
                         : ''
                 }
+        <button class="card-share-btn" data-id="${car.id}" aria-label="Share">
+        <i class="fa-solid fa-share-nodes"></i>
+        </button>
         </div>
+
         <div class="card-content">
         <h3 class="card-name">${car.name}</h3>
 
@@ -145,9 +164,9 @@ function renderCars(filteredCars) {
         </div>
        
         <div class="card-buttons">
-        <a href="${car.instagramReel}" target="_blank" rel="noopener"
-        aria-label="Instagram" class="btn-instagram">
-        <i class="fa-brands fa-instagram instagram"></i></a>
+        <a href="https://wa.me/918106111489?text=${encodeURIComponent(`Hi, I am interested in ${car.name} ${car.year} priced at ₹${car.price.toLocaleString('en-IN')}. Is it still available?`)}" target="_blank" rel="noopener" aria-label="Whatsapp" class="btn-whatsapp-card">
+        <i class="fa-brands fa-whatsapp"></i></a>
+
         <button class="btn-details" data-id="${car.id}">View Details
         <i class="fa-solid fa-arrow-right"></i></button>
         </div>
@@ -230,7 +249,7 @@ function clearFilters() {
     allDropdowns.forEach(select => {
         // reset value
         select.value = "";
-        // remove gold style
+        // remove active gold style
         select.classList.remove("active-filter");
     });
 
@@ -240,4 +259,30 @@ function clearFilters() {
 
     // re-render
     update();
-}
+};
+
+// Share Button on Car Card using Web Share API
+document.getElementById("carsGrid").addEventListener("click", async (e) => {
+    const shareBtn = e.target.closest(".card-share-btn");
+    if (!shareBtn) return;
+
+    e.stopPropagation();
+
+    const carId = Number(shareBtn.dataset.id);
+    const car = allCars.find(c => c.id === carId);
+    if (!car) return;
+
+    const shareData = {
+        title: `${car.name} ${car.year} - Imran Cars Tadipatri`,
+        text: `Check out this ${car.name} ${car.year} at ₹${car.price.toLocaleString('en-IN')} - Imran Cars Tadipatri`,
+        url: window.location.href
+    };
+
+    if (navigator.share) {
+        try { await navigator.share(shareData); }
+        catch (err) { console.log("Share cancelled"); }
+    } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+    }
+});

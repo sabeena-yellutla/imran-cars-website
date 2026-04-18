@@ -1,4 +1,5 @@
 // ========== SCROLL REVEAL ==========
+// Scroll reveal animation using Intesection Observer API
 const revealElements = document.querySelectorAll(".reveal, .reveal-left, reveal-right");
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -17,7 +18,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 });
 
 revealElements.forEach(el => revealObserver.observe(el));
-
 
 // ========== NAVBAR: THEME TOGGLE  ==========
 const themeToggle = document.querySelector(".theme-toggle");
@@ -40,7 +40,9 @@ themeToggle.addEventListener("click", () => {
 // ========== NAVBAR: HAMBURGER MENU ==========
 const hamburger = document.querySelector(".hamburger")
 const navLinks = document.querySelector(".nav-links");
+const links = document.querySelectorAll('.nav-links .list li a');
 
+// Toggling hamburger menu
 hamburger.addEventListener("click", () => {
     navLinks.classList.toggle('active');
     const icon = hamburger.querySelector('i');
@@ -48,8 +50,8 @@ hamburger.addEventListener("click", () => {
     icon.classList.toggle('fa-xmark');
 });
 
-// close menu when a nav link is clicked
-document.querySelectorAll('.nav-links .list li a').forEach(link => {
+// Close hamburger menu when a nav link is clicked
+links.forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         const icon = hamburger.querySelector('i');
@@ -58,8 +60,14 @@ document.querySelectorAll('.nav-links .list li a').forEach(link => {
     });
 });
 
+// Active Nav Highlight
+navLinks.addEventListener("click", (event) => {
+    const links = navLinks.querySelectorAll(".nav-links .list li a");
+    links.forEach(link => link.classList.remove("active"));
+    event.target.classList.add("active");
+});
 
-// ========== REVIEW SWIPER ==========
+// ========== REVIEW SWIPER USING SWIPER.JS ==========
 document.addEventListener("DOMContentLoaded", () => {
     const reviewsSwiper = new Swiper(".reviews-swiper", {
         loop: true,
@@ -79,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
 // ========== BACK TO TOP BUTTON ==========
 const backToTop = document.getElementById("backToTop");
 
@@ -97,8 +104,13 @@ window.addEventListener("touchmove", handleScroll);
 
 backToTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-});
 
+    // active nav link reset on back to top
+    links.forEach(link => {
+        link.classList.remove("active");
+        link.getAttribute("href") === "#home" ? link.classList.add("active") : "";
+    })
+});
 
 // ========== FAQ ACCORDION ==========
 const faqItems = document.querySelectorAll(".faq-item");
@@ -122,6 +134,21 @@ faqItems.forEach(item => {
 });
 
 
+// Google Analytics
+
+// Track Call button clicks
+document.querySelectorAll('a[href^="tel:"]').forEach(btn => {
+    btn.addEventListener("click", () => {
+        gtag('event', 'call_click');
+    });
+});
+
+// Track WhatsApp clicks
+document.querySelectorAll('a[href*="wa.me"]').forEach(btn => {
+    btn.addEventListener("click", () => {
+        gtag('event', 'whatsapp_click');
+    });
+});
 
 
 

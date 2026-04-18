@@ -1,3 +1,76 @@
+/* ========== LOGOS MARQUE SCROLL SECTION ========== */
+
+.marquee-section {
+    padding: 5rem 2rem 1rem 2rem;
+    width: 100%;
+}
+
+.marquee-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 28px 0;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    /* fade edges */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.marquee-track {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.marquee-content {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    padding: 0 30px;
+    flex-shrink: 0;
+    animation: marquee-scroll 20s linear infinite;
+}
+
+.marquee-content img {
+    height: 52px;
+    width: 52px;
+    object-fit: contain;
+    /* Dark theme - light gray logos */
+    filter: brightness(0) invert(0.6);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+/* Light theme - dark gray logos */
+body.light .marquee-content img {
+    filter: brightness(0) invert(0.3);
+    opacity: 0.45;
+}
+
+.marquee-content img:hover {
+    opacity: 1;
+    filter: brightness(0) invert(0.85);
+}
+
+body.light .marquee-content img:hover {
+    opacity: 1;
+    filter: brightness(0) invert(0.4);
+}
+
+.marquee-track:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .marquee-section {
+        padding: 3.5rem 1rem 0.5rem 1rem;
+    }
+}
+
 /* ========== CTA SECTION ========== */
 
 .cta-section {
@@ -75,6 +148,7 @@ body.light .cta-container::before {
     letter-spacing: 0.5px;
     white-space: nowrap;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: pulse 2s infinite;
 }
 
 .cta-call-btn i {
@@ -83,9 +157,7 @@ body.light .cta-container::before {
 }
 
 .cta-call-btn:hover {
-    background-color: var(--gold-hover);
-    border-color: var(--gold-hover);
-    transform: translateY(-2px);
+    animation: none;
 }
 
 .cta-call-btn:active {
@@ -129,6 +201,7 @@ body.light .cta-container::before {
         padding: 0.65rem 1rem;
     }
 }
+
 
 /* ========== REVIEWS SECTION ========== */
 
@@ -488,7 +561,7 @@ body.light .reviews-section::before {
 
 /* ========== FAQ SECTION ========== */
 
-/* radial gradient of faq section on dark theme */
+/* radial gradient on dark theme */
 .faq-section {
     padding: 4rem 2rem;
     scroll-margin-top: calc(var(--nav-height) - 20px);

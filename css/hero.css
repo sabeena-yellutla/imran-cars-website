@@ -74,20 +74,6 @@
     animation: fadeUp 0.6s ease-out 0.4s both;
 }
 
-.highlight {
-    background: linear-gradient(135deg, #c9a227 0%, #f5e88a 50%, #c9a227 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light .highlight {
-    background: linear-gradient(135deg, #a67c00, #c9a227, #f5d060, #e6b800);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
 .hero-btns {
     display: flex;
     align-items: center;
@@ -514,7 +500,7 @@ body.light .hero-image img {
     color: var(--text-primary);
 }
 
-/* state-based styling */
+/* Active filters styling */
 .filter-select.active-filter {
     color: var(--gold);
     box-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
@@ -545,12 +531,7 @@ body.light .hero-image img {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-.clear-btn,
-.sold-btn,
-.available-btn {
-    background-color: transparent;
+     background-color: transparent;
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }

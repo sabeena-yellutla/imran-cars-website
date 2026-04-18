@@ -53,7 +53,7 @@ body {
     color: var(--text-primary);
 }
 
-/* Custom Scrollbar */
+/* ========== Custom Scrollbar ========== */
 ::-webkit-scrollbar {
     width: 7px;
 }
@@ -71,9 +71,7 @@ body {
     background: rgba(150, 150, 150, 0.7);
 }
 
-
 /* ========== SECTION GLOBAL STYLES ========== */
-
 .section-header {
     display: flex;
     flex-direction: column;
@@ -103,8 +101,21 @@ body {
     line-height: 1.7;
 }
 
-/* ============ Badge styles for both Car Cards and Car Modal ===============  */
+.highlight {
+    background: linear-gradient(135deg, #c9a227 0%, #f5e88a 50%, #c9a227 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
+body.light .highlight {
+    background: linear-gradient(135deg, #a67c00, #c9a227, #f5d060, #e6b800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============ Badge styles for both Car Cards and Car Modal ===============  */
 .badge-hot {
     background-color: rgba(201, 162, 39, 0.9);
     color: #000000;
@@ -187,6 +198,16 @@ body {
   }
 }
 
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
 /* ============= Scroll Reveal ============ */
 
 .reveal {
@@ -201,7 +222,7 @@ body {
     transform: translateY(0);
 }
 
-/* stagger delays for grids, for why us cards, faq items, contact items */
+/* stagger delays for why us cards, faq items, contact items */
 .reveal-delay-1 {
     transition-delay: 0.1s;
 }

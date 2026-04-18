@@ -93,6 +93,8 @@ function openModal(car) {
     // lock body scroll
     document.body.style.overflow = "hidden";
 
+    // hide backToTop button on modal opens
+    backToTop.classList.remove("visible");
 }
 
 // ========== CLOSE MODAL ==========
@@ -113,6 +115,11 @@ function closeModal() {
     // clear the content
     modalSwiperWrapper.innerHTML = "";
     modalSpecs.innerHTML = "";
+
+    // restore back to top visibility 
+    if (window.scrollY > 400) {
+        backToTop.classList.add("visible");
+    }
 }
 
 // Event Listeners to Close the Modal
@@ -134,7 +141,7 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-// ========== VIEW DETAILS CLICK ==========
+// Clicking on Veiw Details button opens Modal
 document.getElementById("carsGrid").addEventListener("click", (event) => {
 
     // Get the btn and then its id
@@ -147,5 +154,50 @@ document.getElementById("carsGrid").addEventListener("click", (event) => {
     const car = allCars.find(c => c.id === carId);
     if (!car) return;
 
+
     openModal(car);
 });
+
+// ========== LIGHTBOX MODAL ==========
+// TO view modal images full screen
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxClose = document.getElementById("lightboxClose");
+
+function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+    lightbox.classList.remove("active");
+    lightboxImg.src = "";
+    lightboxImg.alt = ""
+    document.body.overflow = "";
+}
+
+// Close Lightbox Modal on X button
+lightboxClose.addEventListener("click", closeLightbox);
+
+// Close Lightbox Modal on overlay click
+lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+        closeLightbox();
+    }
+});
+
+// Close Lightbox Modal on Escape Key
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeLightbox();
+    }
+})
+
+// Trigger lightbox on modal image click to view full screen
+document.querySelector(".modal-swiper").addEventListener("click", (event) => {
+    const img = event.target.closest("img");
+    if (!img) return;
+    openLightbox(img.src, img.alt);
+})

@@ -108,8 +108,9 @@
     transform: scaleX(1);
 }
 
-.nav-links .list li a:active {
-    color: var(--gold-subtle);
+/* active state for navlink */
+.nav-links .list li a.active {
+    color: var(--gold);
 }
 
 .nav-icons {

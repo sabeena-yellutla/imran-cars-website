@@ -293,6 +293,12 @@ body.light .footer {
     display: inline-block;
 }
 
+.footer-carsList li.and-more {
+    color: var(--gold);
+    font-style: italic;
+    opacity: 0.8;
+}
+
 .footer-links-list li a:hover {
     color: var(--gold);
     padding-left: 6px;

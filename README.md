@@ -23,19 +23,22 @@ Car data is managed using a JSON file and dynamically rendered on the website us
 
 ## 🚀 Features
 
-* 🔍 Real-time car search functionality
-* 🎯 Advanced filters (budget, brand, fuel, KM, transmission, etc.)
-* 🚗 Dynamic car listings using JSON data
-* 🪟 Interactive car detail modal with image carousel
-* 🎞 Swiper.js integration for reviews and modal slider
-* ✨ Scroll reveal animations using Intersection Observer
-* 📨 Web Share API — share any car listing directly to WhatsApp or any app
-* 🌗 Dark/Light theme toggle
-* 📱 Fully responsive (mobile-first design)
-* ⭐ Customer reviews section
-* ❓ FAQ section
-* 📞 Contact & location section with Google Maps
-*  👀 SEO optimised + Google Search Console + Google Analytics
+- Dynamic car listings loaded from JSON
+- Search and filter by brand, fuel, budget, transmission, year, seating and KM driven
+- Available and Sold cars toggle
+- Car detail modal with image carousel (Swiper.js)
+- Fullscreen image lightbox
+- WhatsApp direct contact with pre-filled car message
+- Share car listings via Web Share API
+- Google Maps embed for showroom location
+- Customer reviews carousel with auto-scroll
+- FAQ accordion
+- Dark and Light theme toggle with localStorage
+- Scroll reveal animations using Intersection Observer
+- Responsive design for all screen sizes
+- Back to top button
+- Custom scrollbar
+- SEO meta tags and Open Graph tags
 
 ---
 
@@ -44,7 +47,7 @@ Car data is managed using a JSON file and dynamically rendered on the website us
 * HTML5
 * CSS3
 * JavaScript (Vanilla JS)
-* Swiper.js
+* Swiper.js for carousels
 
 ---
 

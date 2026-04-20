@@ -312,8 +312,13 @@ body.light .hero-image img {
     }
 
     .hero-btns {
-        flex-direction: column;
-        width: 100%;
+        flex: 1;
+    }
+
+    .hero-btns .btn-primary,
+    .hero-btns .btn-whatsapp {
+        padding: 0.9rem 0.8rem;
+        font-size: 0.85rem;
     }
 
     .hero-stats {
@@ -345,6 +350,17 @@ body.light .hero-image img {
 
     .hero-description {
         font-size: 0.85rem;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-btns .btn-primary,
+    .hero-btns .btn-whatsapp {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
     }
 
     .hero-stats {
@@ -399,7 +415,7 @@ body.light .hero-image img {
 .search-card {
     background-color: var(--card-bg);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--gold);
+    /* border-top: 3px solid var(--gold); */
     border-radius: 12px;
     padding: 2rem;
     display: flex;
@@ -439,7 +455,7 @@ body.light .hero-image img {
 }
 
 .search-row i {
-    color: var(--gold);
+    color: var(--text-secondary);
     font-size: 1rem;
     flex-shrink: 0;
 }
@@ -485,7 +501,7 @@ body.light .hero-image img {
 
 /* Custom filter dropdown arrow */
 .filter-select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c9a227' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     padding-right: 2.5rem;
@@ -531,7 +547,7 @@ body.light .hero-image img {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-     background-color: transparent;
+    background-color: transparent;
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }

@@ -38,9 +38,19 @@ themeToggle.addEventListener("click", () => {
 
 
 // ========== NAVBAR: HAMBURGER MENU ==========
+const navbar = document.querySelector(".navbar");
 const hamburger = document.querySelector(".hamburger")
 const navLinks = document.querySelector(".nav-links");
 const links = document.querySelectorAll('.nav-links .list li a');
+
+// Add Scrolled class to navbar on page scroll
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 30) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
 
 // Toggling hamburger menu
 hamburger.addEventListener("click", () => {

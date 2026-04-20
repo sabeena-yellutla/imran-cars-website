@@ -6,14 +6,17 @@
     top: 0;
     z-index: 1000;
     background-color: var(--primary-bg);
-    border-bottom: 1px solid var(--border);
-    box-shadow: var(--navbar-shadow);
     animation: fadeDown 0.6s ease-out both;
 }
 
 .navbar {
     height: var(--nav-height);
     position: relative;
+}
+
+.navbar.scrolled {
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--navbar-shadow);
 }
 
 .nav-container {

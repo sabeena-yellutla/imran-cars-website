@@ -153,6 +153,7 @@
 .card-share-btn:active {
     transform: scale(0.95);
 }
+
 .car-card:hover .card-share-btn {
     display: flex;
 }
@@ -208,7 +209,6 @@
 }
 
 .specs-row span i {
-    color: var(--gold);
     font-size: 0.78rem;
     flex-shrink: 0;
 }
@@ -328,6 +328,7 @@
     .section-description {
         font-size: 0.9rem;
     }
+
     .card-share-btn {
         display: flex;
     }
@@ -565,7 +566,7 @@
 }
 
 .spec-label i {
-    color: var(--gold);
+    color: var(--text-secondary);
     width: 16px;
     text-align: center;
 }
@@ -582,9 +583,8 @@
 
 .modal-price-block {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.3rem;
 }
 
 .modal-price {
@@ -598,11 +598,8 @@
     font-size: 0.75rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: #25d366;
-    border: 1px solid #25d366;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    background-color: rgba(37, 211, 102, 0.1);
+    font-style: italic;
+    color: var(--text-secondary);
 }
 
 .modal-description {

@@ -259,7 +259,7 @@ body.light .reviews-section::before {
 .review-card {
     background-color: var(--card-bg);
     border: none;
-    border-left: 3px solid var(--gold);
+    border-left: 3px solid transparent;
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
@@ -267,10 +267,11 @@ body.light .reviews-section::before {
     gap: 1rem;
     height: 100%;
     box-shadow: var(--card-shadow);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .review-card:hover {
+    border-left: 3px solid var(--gold);
     box-shadow: var(--card-shadow-hover);
     transform: translateY(-5px);
 }
@@ -284,9 +285,10 @@ body.light .reviews-section::before {
 .reviewer-avatar {
     width: 44px;
     height: 44px;
+    border: 1px solid var(--border);
     border-radius: 50%;
-    background-color: var(--gold);
-    color: #000000;
+    background-color: var(--card-bg);
+    color: var(--gold);
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 1rem;
@@ -324,19 +326,9 @@ body.light .reviews-section::before {
     gap: 0.3rem;
 }
 
-.reviewer-car i {
-    color: var(--gold);
-    font-size: 0.75rem;
-    flex-shrink: 0;
-}
-
 .review-stars {
     display: flex;
     gap: 0.25rem;
-}
-
-.review-stars i {
-    color: #f59e0b;
     font-size: 0.9rem;
 }
 
@@ -477,7 +469,7 @@ body.light .reviews-section::before {
     left: 0;
     width: 100%;
     transform: scaleX(0);
-    height: 3px;
+    height: 2px;
     background: linear-gradient(to right,
             transparent 0%,
             var(--gold) 30%,
@@ -635,7 +627,7 @@ body.light .faq-section {
 }
 
 .faq-icon {
-    color: var(--gold);
+    color: var(--text-primary);
     font-size: 1rem;
     flex-shrink: 0;
     transition: transform 0.3s ease;
@@ -643,6 +635,7 @@ body.light .faq-section {
 
 .faq-item.active .faq-icon {
     transform: rotate(180deg);
+    color: var(--gold);
 }
 
 .faq-answer {
